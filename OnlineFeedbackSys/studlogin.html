@@ -1,0 +1,285 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Validation Hints</title>
+
+<style type="text/css">
+form {  height:415px;
+	width:500px;
+	border:1px solid #ccc;
+}
+fieldset {
+	border:0;
+	padding:10px;
+	margin:10px;
+	position:relative;
+}
+label {
+	display:block;
+	font:normal 12px/17px verdana;
+}
+input {width:160px;}
+
+h1{
+position:relative;
+
+}
+#content
+{
+text-align:left;
+margin-top:7%;
+margin-left:30%;
+}
+span.hint {
+	font:normal 11px/14px verdana;
+	background:#eee url(bg-span-hint-gray.gif) no-repeat top left;
+	color:#444;
+	border:1px solid #888;
+	padding:5px 5px 5px 40px;
+	width:250px;
+	position:absolute;
+	margin: -12px 0 0 14px;
+	display:none;
+}
+#ermsgy {
+        background: #f60000;
+	border: 1px solid #d50000; 
+	font-weight: bold;
+	color: white;
+}
+
+#ermsgb {
+        background: #f60000;
+	border: 3px solid #d50000; 
+	font-weight: bold;
+	color: white;
+}
+#ermsgr {
+        background: #f60000;
+	border: 3px solid #d50000; 
+	font-weight: bold;
+	color: white;
+}
+fieldset.welldone span.hint {
+	background:#9fd680 url(bg-span-hint-welldone.jpg) no-repeat top left;
+	border-color:#749e5c;
+	color:#000;
+}
+fieldset.kindagood span.hint {
+	background:#ffffcc url(bg-span-hint-kindagood.jpg) no-repeat top left;
+	border-color:#cc9933;
+}
+
+
+fieldset.welldone {
+	background:transparent url(bg-fieldset-welldone.gif) no-repeat 194px 19px;
+}
+fieldset.kindagood {
+	background:transparent url(bg-fieldset-kindagood.gif) no-repeat 194px 19px;
+}
+</style>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<div id="wrapper">
+<header>
+<img src="io.jpg" height="100%" alt="" id="i">
+<img src="ccc.jpg" height="80%" >
+<img src="fbi.jpg" height="65%" align="right" id="icon1" >
+</header>
+
+<div id="topnav" style="clear:both;width:100%;height:35px;">
+<div style="float:left;width:25%;word-spacing:35px;font-size:20px;padding-left:25%;padding-top:6px;white-space:nowrap;text-align:left;">
+<header-line>
+<a class="topnav" href="home.html" align="right">Home</a>
+<a class="topnav" href="admin.html" font>Admin</a>
+<a class="topnav" href="facfrm.html">Faculty</a>
+<a class="topnav" href="studlogin.html" >Students</a>
+</div>
+<div style="float:right;font-size:20px;padding-right:15%;padding-top:7px;white-space:nowrap;text-align:right;">
+<a class="topnav" href="about us.html" >about us</a>
+</div>
+</div>
+</header-line>
+</div>
+<body>
+<div id="content">
+<h1>Enter ur Details</h1>
+<form name="basicform"  method="post" action="http://localhost:8080/vnrvjiet new/checkst.jsp"
+	id="basicform" onSubmit="return validate()">
+<fieldset>
+	<label for="rollno">*Enter ur rollno:</label>
+	<input type="text" required="true"
+		id="rollno" name="rollnumber"
+		onkeyup="checkrollnoForLength(this);" />
+	<span class="hint">rollno is a least 10 characters in length with a letter in middle.</span>
+        <span id="ermsgr" style="display:none;"><br/>invalid rollno</span>
+</fieldset>
+
+<fieldset>
+	<label for="password">*Enter ur password:</label>
+	<input
+		type="password" required="true"
+		id="password" name="password"
+		onkeyup="checkPassword(this);" />
+	<span class="hint">The password is a combination of characters, and  at least 4 characters in length.  </span>
+</fieldset>
+
+<fieldset>
+	<label for="branch">*Choose ur branch:</label>
+	<select name="branch" id="branch"    onchange="checkbranch(this);"
+		 >
+<option value="000" selected="selected">choose ur option</option>
+<option value="it" >IT</option>
+<option value="cse" >CSE</option>
+<option value="ece" >ECE</option>
+<option value="eee" >EEE</option>
+<option value="mech" >MECH</option>
+<option value="civ" >CIV</option>
+</select><span id="ermsgb" style="display:none;"><br/>choose atleast 1 branch</span>
+</fieldset>
+<fieldset >
+<label for="year">*Choose ur year:</label>
+<select name="year" id="year"   onchange="checkyear(this);" 
+		 >
+<option value="000" selected="selected">choose ur option</option>
+<option value="1" >I</option>
+<option value="2" >II</option>
+<option value="3" >III</option>
+<option value="4" >IV</option>
+</select><span id="ermsgy" style="display:none;"><br/>choose atleast 1 year</span>
+</fieldset>
+<br/>
+&nbsp&nbsp&nbsp&nbsp<input type="submit" value="submit" name="submit" >
+</form>
+<div>
+<script type="text/javascript">
+
+// This function checks if the username field
+// is at least 6 characters long.
+// If so, it attaches class="welldone" to the 
+// containing fieldset.
+
+function checkrollnoForLength(whatYouTyped) {
+	var fieldset = whatYouTyped.parentNode;
+	var txt = whatYouTyped.value;
+	if (txt.length === 10 && /[0-9]{5}[A-Z]{1}[0-9]{4}/.test(txt)) {
+		fieldset.className = "welldone";
+	}
+	else {
+		fieldset.className = "kindagood";
+	}
+}
+
+function checkPassword(whatYouTyped) {
+	var fieldset = whatYouTyped.parentNode;
+	var txt = whatYouTyped.value;
+	if (txt.length > 3 && txt.length < 8) {
+		fieldset.className = "kindagood";
+	} else if (txt.length > 7) {
+		fieldset.className = "welldone";
+	} else {
+		fieldset.className = "";
+	}
+}
+ 
+function checkbranch(whatuselected){
+             var fieldset = whatuselected.parentNode;
+	var brch = whatuselected.value;
+	if(/it/.test(brch) || /cse/.test(brch) || /ece/.test(brch) || /eee/.test(brch) || /mech/.test(brch) || /civ/.test(brch) )          
+           {
+                 fieldset.className = "welldone";
+           }
+          else{
+           fieldset.className = "kindagood";
+            }
+}
+function checkyear(whatuselected){
+            var fieldset = whatuselected.parentNode;
+	var yer = whatuselected.value;
+          if( /1/.test(yer) || /2/.test(yer) || /3/.test(yer) || /4/.test(yer))
+          {  
+             
+                 fieldset.className = "welldone";
+           }
+          else{
+           fieldset.className = "kindagood";
+            }
+}
+
+
+function validate() 
+{
+	var valid = false;
+       var txt=document.forms[0].elements[1].value;
+        var brch=document.forms[0].elements[5].value;
+      var yer=document.forms[0].elements[7].value;
+  if (txt.length === 10 && /[0-9]{5}[A-Z]{1}[0-9]{4}/.test(txt)) 
+   {        
+      if(/it/.test(brch) || /cse/.test(brch) || /ece/.test(brch) || /eee/.test(brch) || /mech/.test(brch) || /civ/.test(brch) )  
+          {
+               if (/1/.test(yer) || /2/.test(yer) || /3/.test(yer) || /4/.test(yer)) 
+               {   
+              
+               valid = "true";              
+               
+	       }
+            
+              else
+              {
+      
+              document.getElementById("ermsgy").style.display = "inline";
+              return false;
+               }
+          }
+        else
+         {
+           document.getElementById("ermsgb").style.display = "inline";
+            return false;
+         }
+   }
+ else{
+          document.getElementById("ermsgr").style.display = "inline";
+           return false;
+      }
+   
+ 
+  
+ return true;
+        
+}
+
+
+
+
+function addLoadEvent(func) {
+ var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      oldonload();
+      func();
+    }
+  }
+}
+
+
+function prepareInputsForHints() {
+  var inputs = document.getElementsByTagName("input");
+  for (var i=0; i<inputs.length; i++){
+    inputs[i].onfocus = function () {
+      this.parentNode.getElementsByTagName("span")[0].style.display = "inline";
+    }
+    inputs[i].onblur = function () {
+      this.parentNode.getElementsByTagName("span")[0].style.display = "none";
+   }
+  }
+}
+addLoadEvent(prepareInputsForHints);
+
+
+</script>
+ 
+</body>
+</html>

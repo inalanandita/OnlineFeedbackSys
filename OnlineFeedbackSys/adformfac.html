@@ -1,0 +1,181 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Validation Hints</title>
+
+<style type="text/css">
+form {  height:215px;
+	width:300px;
+	border:1px solid #ccc;
+}
+fieldset {
+	border:0;
+	padding:10px;
+	margin:10px;
+	position:relative;
+}
+label {
+	display:block;
+	font:normal 12px/17px verdana;
+}
+input {width:160px;}
+
+h1{
+margin-left:50px;
+}
+#content
+{
+text-align:left;
+margin-top:7%;
+margin-left:30%;
+}
+
+#ermsgy {
+        background: #f60000;
+	border: 1px solid #d50000; 
+	font-weight: bold;
+	color: white;
+}
+
+#ermsgb {
+        background: #f60000;
+	border: 3px solid #d50000; 
+	font-weight: bold;
+	color: white;
+}
+
+
+
+
+fieldset.welldone {
+	background:transparent url(bg-fieldset-welldone.gif) no-repeat 194px 19px;
+}
+fieldset.kindagood {
+	background:transparent url(bg-fieldset-kindagood.gif) no-repeat 194px 19px;
+}
+</style>
+<link rel="stylesheet" href="style.css">
+</head>
+<div id="wrapper">
+<header>
+<img src="io.jpg" height="100%" alt="" id="i">
+<img src="ccc.jpg" height="80%" >
+<img src="fbi.jpg" height="65%" align="right" id="icon1" >
+</header>
+
+<div id="topnav" style="clear:both;width:100%;height:35px;">
+<div style="float:left;width:25%;word-spacing:35px;font-size:20px;padding-left:25%;padding-top:6px;white-space:nowrap;text-align:left;">
+<header-line>
+<a class="topnav" href="home.html" align="right">Home</a>
+<a class="topnav" href="admin.html" font>Admin</a>
+<a class="topnav" href="facfrm.html">Faculty</a>
+<a class="topnav" href="studlogin.html" >Students</a>
+</div>
+<div style="float:right;font-size:20px;padding-right:15%;padding-top:7px;white-space:nowrap;text-align:right;">
+<a class="topnav" href="about us.html" >about us</a>
+</div>
+</div>
+</header-line>
+</div>
+<body>
+<div id="content">
+<h1>Enter  Details</h1>
+<form name="basicform" method="post" action="http://localhost:8080/vnrvjiet new/reportfac.jsp"
+	id="basicform" onSubmit="return validate()">
+
+
+<fieldset>
+	<label for="branch">*Choose ur branch:</label>
+	<select name="branch" id="branch"    onchange="checkbranch(this);"
+		 >
+<option value="000" selected="selected">choose ur option</option>
+<option value="it" >IT</option>
+<option value="cse" >CSE</option>
+<option value="ece" >ECE</option>
+<option value="eee" >EEE</option>
+<option value="mech" >MECH</option>
+<option value="civ" >CIV</option>
+</select><span id="ermsgb" style="display:none;"><br/>choose atleast 1 branch</span>
+</fieldset>
+<fieldset >
+<label for="year">*Choose ur year:</label>
+<select name="year" id="year"   onchange="checkyear(this);" 
+		 >
+<option value="000" selected="selected">choose ur option</option>
+<option value="1" >I</option>
+<option value="2" >II</option>
+<option value="3" >III</option>
+<option value="4" >IV</option>
+</select><span id="ermsgy" style="display:none;"><br/>choose atleast 1 year</span>
+</fieldset>
+<br/>
+&nbsp&nbsp&nbsp&nbsp<input type="submit" value="submit" name="submit" >
+</form>
+<div>
+<script type="text/javascript">
+function checkbranch(whatuselected){
+             var fieldset = whatuselected.parentNode;
+	var brch = whatuselected.value;
+	if(/it/.test(brch) || /cse/.test(brch) || /ece/.test(brch) || /eee/.test(brch) || /mech/.test(brch) || /civ/.test(brch) )          
+           {
+                 fieldset.className = "welldone";
+           }
+          else{
+           fieldset.className = "kindagood";
+            }
+}
+function checkyear(whatuselected){
+            var fieldset = whatuselected.parentNode;
+	var yer = whatuselected.value;
+          if( /1/.test(yer) || /2/.test(yer) || /3/.test(yer) || /4/.test(yer))
+          {  
+             
+                 fieldset.className = "welldone";
+           }
+          else{
+           fieldset.className = "kindagood";
+            }
+}
+
+
+function validate() 
+{
+	var valid = false;
+       var txt=document.forms[0].elements[1].value;
+        var brch=document.forms[0].elements[5].value;
+      var yer=document.forms[0].elements[7].value;
+          
+      if(/it/.test(brch) || /cse/.test(brch) || /ece/.test(brch) || /eee/.test(brch) || /mech/.test(brch) || /civ/.test(brch) )  
+          {
+               if (/1/.test(yer) || /2/.test(yer) || /3/.test(yer) || /4/.test(yer)) 
+               {   
+              
+               valid = "true";              
+               
+	       }
+            
+              else
+              {
+      
+              document.getElementById("ermsgy").style.display = "inline";
+              return false;
+               }
+          }
+        else
+         {
+           document.getElementById("ermsgb").style.display = "inline";
+            return false;
+         }
+  
+   
+ 
+  
+ return true;
+        
+}
+
+
+</script>
+ 
+</body>
+</html>

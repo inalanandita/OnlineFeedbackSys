@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Validation Hints</title>
+
+<style type="text/css">
+form {  height:215px;
+	width:300px;
+	border:1px solid #ccc;
+}
+fieldset {
+	border:0;
+	padding:10px;
+	margin:10px;
+	position:relative;
+}
+label {
+	display:block;
+	font:normal 12px/17px verdana;
+}
+input {width:160px;}
+
+h1{
+position:relative;
+
+}
+#content
+{
+text-align:left;
+margin-top:7%;
+margin-left:30%;
+}
+
+
+#ermsgr {
+        background: #f60000;
+	border: 3px solid #d50000; 
+	font-weight: bold;
+	color: white;
+}
+
+</style>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<div id="wrapper">
+<header>
+<img src="io.jpg" height="100%" alt="" id="i">
+<img src="ccc.jpg" height="80%" >
+<img src="fbi.jpg" height="65%" align="right" id="icon1" >
+</header>
+
+<div id="topnav" style="clear:both;width:100%;height:35px;">
+<div style="float:left;width:25%;word-spacing:35px;font-size:20px;padding-left:25%;padding-top:6px;white-space:nowrap;text-align:left;">
+<header-line>
+<a class="topnav" href="home.html" align="right">Home</a>
+<a class="topnav" href="admin.html" font>Admin</a>
+<a class="topnav" href="facfrm.html">Faculty</a>
+<a class="topnav" href="studlogin.html" >Students</a>
+</div>
+<div style="float:right;font-size:20px;padding-right:15%;padding-top:7px;white-space:nowrap;text-align:right;">
+<a class="topnav" href="about us.html" >about us</a>
+</div>
+</div>
+</header-line>
+</div>
+
+<body>
+<div id="content">
+<h1>Enter ur Details</h1>
+<form name="basicform"  method="post" action="http://localhost:8080/vnrvjiet new/chkfac.jsp"
+	id="basicform" onSubmit="return validate()">
+<fieldset>
+	<label for="facid">*Enter ur id:</label>
+	<input type="text" required="true"
+		id="facid" name="facid"
+		 />
+	
+        <span id="ermsgr" style="display:none;"><br/>invalid facid</span>
+</fieldset>
+
+<fieldset>
+	<label for="password">*Enter ur password:</label>
+	<input
+		type="password" required="true"
+		id="password" name="password"
+		 /> 
+</fieldset>
+&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="submit" name="submit" >
+</form>
+<div>
+<script type="text/javascript">
+
+
+function validate() 
+{
+	var valid = false;
+       var txt=document.forms[0].elements[1].value;
+      
+  if ( && /[0-9]/.test(txt)) 
+   {        
+         
+              valid = "true";                       
+   }
+ else{
+          document.getElementById("ermsgr").style.display = "inline";
+           return false;
+      }
+   
+return true;
+        
+}
+
+
+
+
+
+</script>
+ 
+</body>
+</html>
